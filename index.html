@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ски-Пассы: Купить билеты онлайн</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-snowflake"></i> Ски-Пассы
+            </div>
+            <ul>
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="tariffs.html">Тарифы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="slider">
+            <img class="slide active" src="skipass.jpg" alt="Ски-подъёмник" >
+        </div>
+        <div class="hero-text">
+            <h1>Купите ски-пасс прямо сейчас!</h1>
+            <p>Онлайн-продажа билетов на подъёмники. Быстро, удобно, без очередей.</p>
+            <a href="tariffs.html" class="cta-button">Выбрать тариф</a>
+        </div>
+        <div class="slider-controls">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+    </section>
+    
+    <section class="features">
+        <h2>Почему выбирают нас?</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <i class="fas fa-ticket-alt fa-3x"></i>
+                <h3>Мгновенная покупка</h3>
+                <p>QR-билеты на email сразу после оплаты.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-percentage fa-3x"></i>
+                <h3>Акции и скидки</h3>
+                <p>Специальные предложения для групп и семей.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-clock fa-3x"></i>
+                <h3>Круглосуточная продажа</h3>
+                <p>Купите билет в любое время дня и ночи.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="promo">
+        <h2>Акция! Скидка 20% на дневной билет</h2>
+        <p>До конца недели. Не упустите шанс!</p>
+        <a href="tariffs.html" class="cta-button">Купить со скидкой</a>
+    </section>
+    
+    <section class="subscribe">
+        <h2>Подпишитесь и получайте новости</h2>
+        <form id="subscribe-form">
+            <input type="email" placeholder="Ваш email" required>
+            <button type="submit"><i class="fas fa-envelope"></i> Подписаться</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Ски-Пассы. Все права защищены. <i class="fas fa-heart"></i></p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

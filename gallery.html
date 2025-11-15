@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ски-Пассы: Галерея</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-snowflake"></i> Ски-Пассы
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="tariffs.html">Тарифы</a></li>
+                <li><a href="gallery.html" class="active">Галерея</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="gallery">
+        <h1>Фото наших курортов</h1>
+        <div class="gallery-grid">
+            <img src="pod.jpg" alt="Подъёмник" onclick="openModal(this.src)">
+            <img src="skipass.jpg" alt="Ски-пасс" onclick="openModal(this.src)">
+            <img src="mountains.jpg" alt="Горы" onclick="openModal(this.src)">
+            <img src="riding.jpg" alt="Катание" onclick="openModal(this.src)">
+            <img src="1.jpg" alt="Катание" onclick="openModal(this.src)">
+            <img src="2.jpg" alt="Катание" onclick="openModal(this.src)">
+        </div>
+    </section>
+    
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modal-img" class="modal-content">
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Ски-Пассы. Все права защищены. <i class="fas fa-heart"></i></p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

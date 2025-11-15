@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ски-Пассы: Контакты</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-snowflake"></i> Ски-Пассы
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="tariffs.html">Тарифы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="contacts.html" class="active">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="contacts">
+        <h1>Свяжитесь с нами</h1>
+        <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> Адрес: г. Москва, ул. Зимняя, 10</p>
+            <p><i class="fas fa-phone"></i> Телефон: +7 (495) 123-45-67</p>
+            <p><i class="fas fa-envelope"></i> Email: info@ski-pass.ru</p>
+        </div>
+        <form id="contact-form">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="email" placeholder="Ваш email" required>
+            <textarea placeholder="Сообщение" required></textarea>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Отправить</button>
+        </form>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.0000!2d37.6173!3d55.7558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a50b315e573%3A0xa886bf5a3d9d2!2z0JzQsNCy0LjQvdGB0LrQuNC5INCc0L7Qu9GD0YHRgtCy0LXQvdC40Y8!5e0!3m2!1sru!2sru!4v1690000000000!5m2!1sru!2sru" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Ски-Пассы. Все права защищены. <i class="fas fa-heart"></i></p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
