@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Административная панель | Ски-Пассы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1e88e5;
+            --primary-dark: #1565c0;
+            --secondary: #ff9800;
+            --secondary-dark: #f57c00;
+            --light: #f8f9fa;
+            --dark: #212121;
+            --gray: #757575;
+            --light-gray: #f5f5f5;
+            --border: #e0e0e0;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+
+        .admin-header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header h1 {
+            color: var(--primary);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-header h1 i {
+            color: var(--secondary);
+        }
+
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 25px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        }
+
+        .admin-nav ul {
+            list-style: none;
+        }
+
+        .admin-nav li {
+            margin-bottom: 5px;
+        }
+
+        .admin-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 25px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .admin-nav a:hover {
+            background-color: var(--light-gray);
+            color: var(--primary);
+        }
+
+        .admin-nav a.active {
+            background-color: rgba(30, 136, 229, 0.1);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .admin-nav i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .admin-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .admin-content h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-info h3 {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-info .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+        }
+
+        .icon-blue {
+            background-color: var(--primary);
+        }
+
+        .icon-orange {
+            background-color: var(--secondary);
+        }
+
+        .icon-green {
+            background-color: var(--success);
+        }
+
+        .icon-red {
+            background-color: var(--danger);
+        }
+
+        .admin-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h3 {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: var(--warning);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid var(--border);
+            color: var(--gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background-color: var(--light-gray);
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--success);
+        }
+
+        .status-inactive {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: var(--danger);
+        }
+
+        .status-pending {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: var(--warning);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .admin-container {
+                flex-direction: column;
+            }
+
+            .admin-sidebar {
+                width: 100%;
+                padding: 0;
+            }
+
+            .admin-nav ul {
+                display: flex;
+                overflow-x: auto;
+            }
+
+            .admin-nav li {
+                flex-shrink: 0;
+                margin-bottom: 0;
+            }
+
+            .admin-nav a {
+                border-left: none;
+                border-bottom: 4px solid transparent;
+                white-space: nowrap;
+            }
+
+            .admin-nav a.active {
+                border-left-color: transparent;
+                border-bottom-color: var(--primary);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <h1><i class="fas fa-skiing"></i> Админ-панель Ски-Пассы</h1>
+        <div class="admin-user">
+            <span>Администратор: <strong>Алексей Иванов</strong></span>
+            <div class="admin-avatar">АИ</div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <nav class="admin-sidebar">
+            <div class="admin-nav">
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Панель управления</a></li>
+                    <li><a href="#"><i class="fas fa-skiing"></i> Ски-пассы</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Пользователи</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> Заказы</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Статистика</a></li>
+                    <li><a href="#"><i class="fas fa-sliders-h"></i> Настройки</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="admin-content">
+            <h2>Панель управления</h2>
+
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Всего заказов</h3>
+                        <div class="number">1,247</div>
+                        <p>+12% за месяц</p>
+                    </div>
+                    <div class="stat-icon icon-blue">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Активные пассы</h3>
+                        <div class="number">543</div>
+                        <p>+8% за месяц</p>
+                    </div>
+                    <div class="stat-icon icon-orange">
+                        <i class="fas fa-skiing"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Пользователи</h3>
+                        <div class="number">892</div>
+                        <p>+5% за месяц</p>
+                    </div>
+                    <div class="stat-icon icon-green">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Выручка</h3>
+                        <div class="number">₽2,458,300</div>
+                        <p>+18% за месяц</p>
+                    </div>
+                    <div class="stat-icon icon-red">
+                        <i class="fas fa-ruble-sign"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <div class="section-header">
+                    <h3>Управление ски-пассами</h3>
+                    <button class="btn btn-primary" id="addPassBtn"><i class="fas fa-plus"></i> Добавить тариф</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Тип</th>
+                            <th>Цена</th>
+                            <th>Действителен</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Стандарт 1 день</strong></td>
+                            <td>Дневной</td>
+                            <td>₽2,500</td>
+                            <td>01.12.2024 - 31.03.2025</td>
+                            <td><span class="status status-active">Активен</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-small"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-small"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Вечерний</strong></td>
+                            <td>Вечерний</td>
+                            <td>₽1,800</td>
+                            <td>01.12.2024 - 31.03.2025</td>
+                            <td><span class="status status-active">Активен</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-small"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-small"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Сезонный</strong></td>
+                            <td>Сезонный</td>
+                            <td>₽45,000</td>
+                            <td>01.12.2024 - 15.04.2025</td>
+                            <td><span class="status status-active">Активен</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-small"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-small"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Детский 1 день</strong></td>
+                            <td>Дневной</td>
+                            <td>₽1,500</td>
+                            <td>01.12.2024 - 31.03.2025</td>
+                            <td><span class="status status-inactive">Неактивен</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-small"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-small"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-section">
+                <div class="section-header">
+                    <h3>Последние заказы</h3>
+                    <button class="btn btn-secondary">Смотреть все</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID заказа</th>
+                            <th>Пользователь</th>
+                            <th>Тариф</th>
+                            <th>Сумма</th>
+                            <th>Дата</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-7842</td>
+                            <td>Иван Петров</td>
+                            <td>Стандарт 1 день</td>
+                            <td>₽2,500</td>
+                            <td>15.11.2024</td>
+                            <td><span class="status status-active">Оплачен</span></td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-7841</td>
+                            <td>Мария Сидорова</td>
+                            <td>Сезонный</td>
+                            <td>₽45,000</td>
+                            <td>14.11.2024</td>
+                            <td><span class="status status-active">Оплачен</span></td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-7840</td>
+                            <td>Алексей Козлов</td>
+                            <td>Вечерний</td>
+                            <td>₽1,800</td>
+                            <td>14.11.2024</td>
+                            <td><span class="status status-pending">Ожидание</span></td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-7839</td>
+                            <td>Ольга Николаева</td>
+                            <td>Стандарт 1 день</td>
+                            <td>₽2,500</td>
+                            <td>13.11.2024</td>
+                            <td><span class="status status-active">Оплачен</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-section" id="addPassForm" style="display: none;">
+                <div class="section-header">
+                    <h3>Добавить новый тариф</h3>
+                </div>
+                <form id="newPassForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="passName">Название тарифа</label>
+                            <input type="text" id="passName" placeholder="Например: Стандарт 1 день" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passType">Тип тарифа</label>
+                            <select id="passType" required>
+                                <option value="">Выберите тип</option>
+                                <option value="day">Дневной</option>
+                                <option value="evening">Вечерний</option>
+                                <option value="season">Сезонный</option>
+                                <option value="child">Детский</option>
+                                <option value="family">Семейный</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="passPrice">Цена (₽)</label>
+                            <input type="number" id="passPrice" placeholder="2500" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passDuration">Длительность (дней)</label>
+                            <input type="number" id="passDuration" placeholder="1" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Дата начала действия</label>
+                            <input type="date" id="startDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">Дата окончания действия</label>
+                            <input type="date" id="endDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="passDescription">Описание тарифа</label>
+                        <textarea id="passDescription" rows="3" placeholder="Подробное описание тарифа..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="passStatus">Статус</label>
+                        <select id="passStatus" required>
+                            <option value="active">Активен</option>
+                            <option value="inactive">Неактивен</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">Отмена</button>
+                        <button type="submit" class="btn btn-success">Добавить тариф</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addPassBtn = document.getElementById('addPassBtn');
+            const addPassForm = document.getElementById('addPassForm');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const newPassForm = document.getElementById('newPassForm');
+            
+            addPassBtn.addEventListener('click', function() {
+                addPassForm.style.display = 'block';
+                addPassBtn.style.display = 'none';
+                window.scrollTo({
+                    top: addPassForm.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+            
+            cancelBtn.addEventListener('click', function() {
+                addPassForm.style.display = 'none';
+                addPassBtn.style.display = 'flex';
+            });
+            
+            newPassForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Новый тариф успешно добавлен!');
+                newPassForm.reset();
+                addPassForm.style.display = 'none';
+                addPassBtn.style.display = 'flex';
+            });
+            
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('startDate').min = today;
+            
+            document.getElementById('startDate').addEventListener('change', function() {
+                document.getElementById('endDate').min = this.value;
+            });
+            
+            document.querySelectorAll('.btn-secondary.btn-small').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Редактирование тарифа. В реальном приложении здесь будет открытие формы редактирования.');
+                });
+            });
+            
+            document.querySelectorAll('.btn-danger.btn-small').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Вы уверены, что хотите удалить этот тариф?')) {
+                        alert('Тариф удален!');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.admin-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        
+                        document.querySelectorAll('.admin-nav a').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        
+                        this.classList.add('active');
+                        
+                        const sectionName = this.querySelector('i').className.split(' ')[1];
+                        let title = '';
+                        
+                        switch(sectionName) {
+                            case 'fa-tachometer-alt': title = 'Панель управления'; break;
+                            case 'fa-skiing': title = 'Ски-пассы'; break;
+                            case 'fa-users': title = 'Пользователи'; break;
+                            case 'fa-shopping-cart': title = 'Заказы'; break;
+                            case 'fa-chart-line': title = 'Статистика'; break;
+                            case 'fa-sliders-h': title = 'Настройки'; break;
+                            default: title = 'Панель управления';
+                        }
+                        
+                        document.querySelector('.admin-content h2').textContent = title;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
