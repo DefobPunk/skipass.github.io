@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирования | Ски-Пассы</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-snowflake"></i> Ски-Пассы
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="tariffs.html">Тарифы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="booking-management.html" class="active">Бронирования</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="bookings" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        <h1 style="text-align: center; margin-bottom: 1rem; color: #0277bd;">Управление бронированиями</h1>
+        <p style="text-align: center; margin-bottom: 2rem; color: #666;">Просмотр, редактирование и управление бронированиями клиентов</p>
+        
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <input type="text" placeholder="Поиск по имени или email" style="flex: 1; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; min-width: 200px;">
+            <input type="date" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+            <select style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; min-width: 150px;">
+                <option value="">Все статусы</option>
+                <option value="confirmed">Подтверждено</option>
+                <option value="pending">Ожидание</option>
+                <option value="cancelled">Отменено</option>
+                <option value="completed">Завершено</option>
+            </select>
+            <button style="background: #0277bd; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 5px; cursor: pointer;">
+                <i class="fas fa-search"></i> Поиск
+            </button>
+            <button onclick="addNewBooking()" style="background: #4CAF50; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 5px; cursor: pointer;">
+                <i class="fas fa-plus"></i> Новое бронирование
+            </button>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 1rem; color: #0277bd;">Фильтры и статистика</h3>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 0.5rem; color: #666;">Быстрый фильтр:</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <button style="background: #e3f2fd; color: #0277bd; border: 1px solid #bbdefb; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                            Сегодня
+                        </button>
+                        <button style="background: #e3f2fd; color: #0277bd; border: 1px solid #bbdefb; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                            Завтра
+                        </button>
+                        <button style="background: #e3f2fd; color: #0277bd; border: 1px solid #bbdefb; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                            Эта неделя
+                        </button>
+                        <button style="background: #e3f2fd; color: #0277bd; border: 1px solid #bbdefb; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">
+                            С просрочкой
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 0.5rem; color: #666;">Статистика:</h4>
+                    <div style="display: grid; gap: 0.8rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Всего бронирований:</span>
+                            <span style="font-weight: 700;">156</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Подтверждено:</span>
+                            <span style="font-weight: 700

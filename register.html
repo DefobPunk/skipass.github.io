@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | Ски-Пассы</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-snowflake"></i> Ски-Пассы
+            </div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="tariffs.html">Тарифы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="login.html">Вход</a></li>
+                <li><a href="register.html" class="active">Регистрация</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="register-section" style="padding: 4rem 2rem; max-width: 600px; margin: 2rem auto;">
+        <div class="register-container" style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: #0277bd;">Создание аккаунта</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Зарегистрируйтесь для получения скидок и управления бронированиями</p>
+            
+            <form id="register-form" style="display: grid; gap: 1.2rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 0.5rem;">
+                        <i class="fas fa-user" style="color: #0277bd; margin: 0 1rem;"></i>
+                        <input type="text" placeholder="Имя" required style="flex: 1; border: none; padding: 0.8rem; outline: none;">
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 0.5rem;">
+                        <i class="fas fa-user" style="color: #0277bd; margin: 0 1rem;"></i>
+                        <input type="text" placeholder="Фамилия" required style="flex: 1; border: none; padding: 0.8rem; outline: none;">
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 0.5rem;">
+                    <i class="fas fa-envelope" style="color: #0277bd; margin: 0 1rem;"></i>
+                    <input type="email" placeholder="Email" required style="flex: 1; border: none; padding: 0.8rem; outline: none;">
+                </div>
+                
+                <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 0.5rem;">
+                    <i class="fas fa-phone" style="color: #0277bd; margin: 0 1rem;"></i>
+                    <input type="tel" placeholder="Телефон" required style="flex: 1; border: none; padding: 0.8rem; outline: none;">
+                </div>
+                
+                <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 0.5rem;">
+                    <i class="fas fa-lock" style="color: #0277bd; margin: 0 1rem;"></i>
+                    <input type="password" placeholder="Пароль" required style="flex: 1; border: none; padding: 0.8rem; outline: none;">
+                </div>
+                
+                <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 0.5rem;">
+                    <i class="fas fa-lock" style="color: #0277bd; margin: 0 1rem;"></i>
+                    <input type="password" placeholder="Подтвердите пароль" required style="flex: 1; border: none; padding: 0.8rem; outline: none;">
+                </div>
+                
+                <label style="display: flex; align-items: flex-start; gap: 0.5rem; margin: 1rem 0;">
+                    <input type="checkbox" required>
+                    <span style="font-size: 0.9rem;">Я согласен с <a href="#" style="color: #0277bd;">условиями использования</a> и <a href="#" style="color: #0277bd;">политикой конфиденциальности</a></span>
+                </label>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <button type="submit" style="background: #0277bd; color: white; border: none; padding: 1rem; border-radius: 5px; font-weight: 700; cursor: pointer; transition: background 0.3s;">
+                        Зарегистрироваться
+                    </button>
+                    <a href="login.html" style="background: #f5f5f5; color: #333; border: none; padding: 1rem; border-radius: 5px; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center;">
+                        Уже есть аккаунт?
+                    </a>
+                </div>
+            </form>
+            
+            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+                <p style="color: #666; margin-bottom: 1rem;">Регистрация дает вам:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-percentage" style="color: #ff5722; font-size: 1.5rem;"></i>
+                        <p style="font-size: 0.9rem;">Скидки постоянным клиентам</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <i class="fas fa-history" style="color: #ff5722; font-size: 1.5rem;"></i>
+                        <p style="font-size: 0.9rem;">История покупок</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <i class="fas fa-bolt" style="color: #ff5722; font-size: 1.5rem;"></i>
+                        <p style="font-size: 0.9rem;">Быстрое бронирование</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Ски-Пассы. Все права защищены. <i class="fas fa-heart"></i></p>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const registerForm = document.getElementById("register-form");
+            if (registerForm) {
+                registerForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    
+                    const password = this.querySelector('input[type="password"]').value;
+                    const confirmPassword = this.querySelectorAll('input[type="password"]')[1].value;
+                    
+                    if (password !== confirmPassword) {
+                        alert("Пароли не совпадают!");
+                        return;
+                    }
+                    
+                    
+                    console.log("Регистрация нового пользователя");
+                    
+                    alert("Регистрация успешна!");
+                    window.location.href = "login.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>
